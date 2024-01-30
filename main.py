@@ -26,6 +26,7 @@ async def on_message(message):
         return 
     
     name = message.author.name
+    print(name)
     # メッセージの本文が 鳴いて だった場合
     if message.content == "!":
         # 送信するメッセージをランダムで決める

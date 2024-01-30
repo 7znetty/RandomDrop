@@ -1,8 +1,8 @@
 import sys
-sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages')
+sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
 import discord
 import random
-client = discord.Client()
+client = discord.Client(intents=discord.Intents.all())
 # ランダムで送るメッセージの一覧 ※ここに書き足すことでランダムに選ぶ内容を増やせる
 random_contents = [
     "にゃーん",

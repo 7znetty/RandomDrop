@@ -3,8 +3,8 @@ sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
 import discord
 import random
 
-Intents = discord.Intents.default()
-Intents.members = True
+Intents = discord.Intents.all()
+#Intents.members = True
 client = discord.Client(intents=Intents)
 # ランダムで送るメッセージの一覧 ※ここに書き足すことでランダムに選ぶ内容を増やせる
 random_contents = [

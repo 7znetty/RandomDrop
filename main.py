@@ -4,7 +4,7 @@ import discord
 import random
 
 Intents = discord.Intents.default()
-Intents = True
+Intents.members = True
 client = discord.Client(intents=Intents)
 # ランダムで送るメッセージの一覧 ※ここに書き足すことでランダムに選ぶ内容を増やせる
 random_contents = [

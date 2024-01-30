@@ -1,7 +1,11 @@
 import sys
-sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
+import os
+#sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
 import discord
 import random
+#from dotenv import load_dotenv
+
+import getLocation
 
 Intents = discord.Intents.all()
 #Intents.members = True
@@ -21,20 +25,28 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    print(message)
     # 送信者がbotである場合は弾く
     if message.author.bot:
         return 
     
     name = message.author.name
     # メッセージの本文が 鳴いて だった場合
-    if message.content == "!":
+    if message.content == "d":
+
         # 送信するメッセージをランダムで決める
-        content = name + random.choice(random_contents)
+        #content = name + random.choice(random_contents)
         # メッセージが送られてきたチャンネルに送る
-        await message.channel.send(content)
+
+        #マップデータを取得
+        mapdata = getLocation.getLocations()
+        #ランダムに選択
+        NamedLocation = getLocation.FindNamedLocation(mapdata.data)
+        location = random.choice(NamedLocation)
+        print(location.name)
+
+        await message.channel.send(location.name)
     elif message.content == "おはよう":
         await message.channel.send("おはよう！！")
 
-
-client.run("MTIwMTU2NTc0NjE4MzAyODc3Ng.GfyGDT.Wx8QXHUqIyKtL0RnkxQgAshTSYVOgAUM-rnraU")
+token = os.getenv('TOKEN')
+client.run(token)

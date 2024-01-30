@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages')
 import discord
 import random
 client = discord.Client()

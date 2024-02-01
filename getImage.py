@@ -16,8 +16,8 @@ def GetImage(url,x,y):
     
     center_x = img_map.height / 2
     center_y = img_map.width / 2
-    print(center_x)
-    print(center_y)
+    # print(center_x)
+    # print(center_y)
     
     #ブレンド
     img_map.paste(img_pin,(int(center_x +x) ,int(center_y + y)),img_pin)

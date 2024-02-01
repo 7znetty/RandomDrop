@@ -19,7 +19,7 @@ def GetImage(url,x,y):
     center_x = img_map.height / 2
     center_y = img_map.width / 2
 
-    pin_center_x = img_pin.width / 2
+    pin_center_x = img_pin.width / 3
     pin_center_y = img_pin.height
 
     #ブレンド

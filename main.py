@@ -6,6 +6,7 @@ import random
 import getImage
 import PIL
 import uuid
+import RandomColor
 #from dotenv import load_dotenv
 
 import getLocation
@@ -32,18 +33,30 @@ async def on_message(message):
     if message.author.bot:
         return 
     
-    name = message.author.name
-    # メッセージの本文が 鳴いて だった場合
-    if message.content == "d":
+    #鯖ID取得
+    guild = client.get_guild(message.guild.id) 
+    memberList = ""
+    userId = message.author.id
+    name = guild.get_member(userId).display_name
+    print(name)
 
-        # 送信するメッセージをランダムで決める
-        #content = name + random.choice(random_contents)
-        # メッセージが送られてきたチャンネルに送る
+    isRecieveCommand = False
+    isAllLocation = False
+    # メッセージの本文が d だった場合
+    if message.content == "d" or message.content == "!drop":
+        isRecieveCommand = True
 
+        
+    elif message.content == "da" or message.content == "!drop_all":
+        isRecieveCommand = True
+        isAllLocation = True
+
+    #コマンドが送信されている場合は処理開始
+    if isRecieveCommand:
         #マップデータを取得
         mapdata = getLocation.getLocations()
         #ランダムに選択
-        NamedLocation = getLocation.FindNamedLocation(mapdata.data)
+        NamedLocation = getLocation.FindNamedLocation(mapdata.data,isAllLocation)
         location = random.choice(NamedLocation)
         x = location.location.x
         y = location.location.y
@@ -53,18 +66,30 @@ async def on_message(message):
         img = getImage.GetImage(mapdata.PoisImage,x,y)
         
         #tmpファイルを保存
-        fn = "./tmp" + str(uuid.uuid1()) + ".png"
+        fileName = str(uuid.uuid1()) + ".png"
+        fn = "tmp/" + fileName
         img.save(fn,format='png')
+
+        color = RandomColor.getColor()
+        #embed作成
+        embed = discord.Embed( # Embedを定義する
+                          title=name + "さんパーティーの降下場所こちら！",# タイトル
+                          color=color, # フレーム色指定(今回は緑)
+                          description=location.name, # Embedの説明文 必要に応じて
+                          )
         
-        msg = location.name + " x:" + str(location.location.x), " y:" + str(location.location.y) + " z:" + str(location.location.z)
-        await message.channel.send(msg,file=discord.File(fn))
+        # ローカル画像からFileオブジェクトを作成
+        file = discord.File(fp=fn,filename=fileName,spoiler=False)
+        embed.set_image(url=f"attachment://{fileName}")
+        embed.set_footer(text="made by ShinoMegu")
         
+        #msg = location.name + " x:" + str(location.location.x), " y:" + str(location.location.y) + " z:" + str(location.location.z)
+        #await message.channel.send(msg,file=discord.File(fn))
+
+        await message.channel.send(embed=embed,file=file)
+
         #tmpファイルを削除
         os.remove(fn)
-        
-
-    elif message.content == "おはよう":
-        await message.channel.send("おはよう！！")
 
 token = os.getenv('TOKEN')
 client.run(token)

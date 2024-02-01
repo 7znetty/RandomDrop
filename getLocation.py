@@ -34,11 +34,15 @@ def ConvertLocation(id,name,x,y,z):
     data = MapDataClass.MapData(id,name,x,y,z)
     return data
 
-def FindNamedLocation(mapDataList):
-    list = []
-    text = "Athena.Location.POI"
-    for data in mapDataList:
-        id = data.id
-        if text in id:            
-            list.append(data)
-    return list
+def FindNamedLocation(mapDataList,isAllLocation = False):
+    #isAllLocation = Trueなら全部の街を返す
+    if isAllLocation:
+        return mapDataList
+    else:
+        list = []
+        text = "Athena.Location.POI"
+        for data in mapDataList:
+            id = data.id
+            if text in id:            
+                list.append(data)
+        return list

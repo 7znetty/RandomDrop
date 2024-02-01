@@ -3,6 +3,9 @@ import os
 #sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
 import discord
 import random
+import getImage
+import PIL
+import uuid
 #from dotenv import load_dotenv
 
 import getLocation
@@ -42,9 +45,24 @@ async def on_message(message):
         #ランダムに選択
         NamedLocation = getLocation.FindNamedLocation(mapdata.data)
         location = random.choice(NamedLocation)
-        print(location.name)
+        x = location.location.x
+        y = location.location.y
+        z = location.location.z
+        print(location.name,"x:",y,"y:",x)
+        # _url = geturl()
+        img = getImage.GetImage(mapdata.PoisImage,x,y)
+        
+        #tmpファイルを保存
+        fn = "./tmp" + str(uuid.uuid1()) + ".png"
+        img.save(fn,format='png')
+        
+        msg = location.name + " x:" + str(location.location.x), " y:" + str(location.location.y) + " z:" + str(location.location.z)
+        await message.channel.send(msg,file=discord.File(fn))
+        
+        #tmpファイルを削除
+        os.remove(fn)
+        
 
-        await message.channel.send(location.name)
     elif message.content == "おはよう":
         await message.channel.send("おはよう！！")
 

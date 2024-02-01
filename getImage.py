@@ -6,21 +6,24 @@ from PIL import Image
 
 def GetImage(url,x,y):
     #ピン画像を取得
-    img_pin = Image.open('./pin2.png')
+    img_pin = Image.open('./pin.png')
     
     #画像urlから画像を取得
     img_map = imread_web(url)
 
-    x = y / 100
-    y = x / 100
+#('プレザント・ピアッツァ x:-20804', ' y:-65764 z:112')
+#'フェンシング・フィールド x:-34960', ' y:-15236 z:112')
+    _x = y / 140 #- img_pin.width
+    _y = -x / 140 #- img_pin.height
     
     center_x = img_map.height / 2
     center_y = img_map.width / 2
-    # print(center_x)
-    # print(center_y)
-    
+
+    pin_center_x = img_pin.width / 2
+    pin_center_y = img_pin.height
+
     #ブレンド
-    img_map.paste(img_pin,(int(center_x +x) ,int(center_y + y)),img_pin)
+    img_map.paste(img_pin,(int(center_x +_x - pin_center_x) ,int(center_y + _y - pin_center_y)),img_pin)
 
 
     return img_map

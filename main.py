@@ -92,4 +92,5 @@ async def on_message(message):
         os.remove(fn)
 
 token = os.getenv('TOKEN')
+print(token)
 client.run(token)

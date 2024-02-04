@@ -39,6 +39,20 @@ async def on_message(message):
     guild = client.get_guild(message.guild.id) 
     memberList = ""
     userId = message.author.id
+
+    #VCに接続されているかどうか確認
+    voicechannels = guild.voice_channels
+    isConnectVoiceChannel = False
+    for ch in voicechannels:
+        memberList = ch.members
+        for m in memberList:
+            if m.id == userId:
+                isConnectVoiceChannel = True
+                break;
+    #VC接続されてない場合は弾く
+    if not isConnectVoiceChannel:
+        return
+    
     name = guild.get_member(userId).display_name
     print(datetime.datetime.now() ,name)
 
@@ -93,5 +107,5 @@ async def on_message(message):
         #tmpファイルを削除
         os.remove(fn)
 
-token = os.getenv('TOKEN')
+token = os.getenv('TESTTOKEN')
 client.run(token)

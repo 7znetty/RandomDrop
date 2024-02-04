@@ -1,6 +1,6 @@
 import sys
 import os
-#sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
+sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
 import discord
 import random
 import getImage

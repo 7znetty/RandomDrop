@@ -43,11 +43,11 @@ async def on_message(message):
     isRecieveCommand = False
     isAllLocation = False
     # メッセージの本文が d だった場合
-    if message.content == "d" or message.content == "!drop":
+    if message.content == "d" or message.content == "!drop" or message.content == "/drop":
         isRecieveCommand = True
 
         
-    elif message.content == "da" or message.content == "!drop_all":
+    elif message.content == "da" or message.content == "!drop_all" or message.content == "/drop_all":
         isRecieveCommand = True
         isAllLocation = True
 

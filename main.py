@@ -14,12 +14,7 @@ import getLocation
 Intents = discord.Intents.all()
 #Intents.members = True
 client = discord.Client(intents=Intents)
-# ランダムで送るメッセージの一覧 ※ここに書き足すことでランダムに選ぶ内容を増やせる
-random_contents = [
-    "にゃーん",
-    "わん！",
-    "コケッコッコー",
-]
+load_dotenv()
 
 @client.event
 async def on_ready():

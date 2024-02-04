@@ -10,7 +10,8 @@ import getLocation
 import datetime
 
 #本番環境設定
-sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
+#↓さくらサーバー用
+#sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
 from dotenv import load_dotenv
 #ここまで
 

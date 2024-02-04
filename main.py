@@ -10,17 +10,15 @@ import getLocation
 import datetime
 
 #本番環境設定
+#さくらサーバーの設定
 #sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
 from dotenv import load_dotenv
-#ここまで
 
 Intents = discord.Intents.all()
 #Intents.members = True
 client = discord.Client(intents=Intents)
 
-#本番環境設定
 load_dotenv()
-#ここまで
 
 @client.event
 async def on_ready():

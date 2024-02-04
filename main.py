@@ -7,7 +7,7 @@ import getImage
 import PIL
 import uuid
 import RandomColor
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 import getLocation
 

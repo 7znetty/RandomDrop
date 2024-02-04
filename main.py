@@ -1,20 +1,25 @@
 import sys
 import os
-sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
 import discord
 import random
 import getImage
 import PIL
 import uuid
 import RandomColor
-from dotenv import load_dotenv
-
 import getLocation
+
+#本番環境設定
+sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
+from dotenv import load_dotenv
+#ここまで
 
 Intents = discord.Intents.all()
 #Intents.members = True
 client = discord.Client(intents=Intents)
+
+#本番環境設定
 load_dotenv()
+#ここまで
 
 @client.event
 async def on_ready():
@@ -86,6 +91,5 @@ async def on_message(message):
         #tmpファイルを削除
         os.remove(fn)
 
-# token = os.getenv('TOKEN')load_dotenv
-token = load_dotenv.getenv('TOKEN')
+token = os.getenv('TOKEN')
 client.run(token)

@@ -1,3 +1,4 @@
 import os
-token = os.getenv('TOKEN')
+from dotenv import load_dotenv
+token = load_dotenv.getenv('TOKEN')
 print(token)

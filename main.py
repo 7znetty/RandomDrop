@@ -91,5 +91,6 @@ async def on_message(message):
         #tmpファイルを削除
         os.remove(fn)
 
-token = os.getenv('TOKEN')
+# token = os.getenv('TOKEN')load_dotenv
+token = load_dotenv.getenv('TOKEN')
 client.run(token)

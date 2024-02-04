@@ -27,15 +27,18 @@ async def on_message(message):
 
     #VCに接続されているかどうか確認
     voicechannels = guild.voice_channels
+    voiceChannel = None
     isConnectVoiceChannel = False
     for ch in voicechannels:
         memberList = ch.members
         for m in memberList:
             if m.id == userId:
                 isConnectVoiceChannel = True
+                voiceChannel = ch
                 break;
     
     print(isConnectVoiceChannel)
+    print(type(ch))
 
     isRecieveCommand = False
     isAllLocation = False
@@ -64,7 +67,7 @@ async def on_message(message):
         #msg = location.name + " x:" + str(location.location.x), " y:" + str(location.location.y) + " z:" + str(location.location.z)
         #await message.channel.send(msg,file=discord.File(fn))
 
-        await message.channel.send(embed=embed)
+        await voiceChannel.send(content="test")#)
 
 
 token = os.getenv('TESTTOKEN')

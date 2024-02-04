@@ -7,6 +7,7 @@ import PIL
 import uuid
 import RandomColor
 import getLocation
+import datetime
 
 #本番環境設定
 sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
@@ -38,7 +39,7 @@ async def on_message(message):
     memberList = ""
     userId = message.author.id
     name = guild.get_member(userId).display_name
-    #print(name)
+    print(datetime.datetime.now() ,name)
 
     isRecieveCommand = False
     isAllLocation = False

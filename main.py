@@ -38,7 +38,7 @@ async def on_message(message):
     memberList = ""
     userId = message.author.id
     name = guild.get_member(userId).display_name
-    print(name)
+    #print(name)
 
     isRecieveCommand = False
     isAllLocation = False
@@ -61,7 +61,7 @@ async def on_message(message):
         x = location.location.x
         y = location.location.y
         z = location.location.z
-        print(location.name,"x:",y,"y:",x)
+        #print(location.name,"x:",y,"y:",x)
         # _url = geturl()
         img = getImage.GetImage(mapdata.PoisImage,x,y)
         

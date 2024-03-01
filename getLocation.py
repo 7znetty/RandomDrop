@@ -23,6 +23,12 @@ def getLocations():
     else:
         return "error"
     
+def getError():
+    request = getRequests()
+    content = json.loads(request.text)
+    data = (content["status"],content["error"])
+    return data
+
 #getLocations用
 def getRequests():
     url = "https://fortnite-api.com/v1/map?language=ja"

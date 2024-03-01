@@ -10,15 +10,18 @@ import getLocation
 import datetime
 
 #本番環境設定
-#さくらサーバーの設定
+#↓さくらサーバー用
 #sys.path.append('/home/cnct/local/python/lib/python3.9/site-packages/discord')
 from dotenv import load_dotenv
+#ここまで
 
 Intents = discord.Intents.all()
 #Intents.members = True
 client = discord.Client(intents=Intents)
 
+#本番環境設定
 load_dotenv()
+#ここまで
 
 @client.event
 async def on_ready():
@@ -68,6 +71,18 @@ async def on_message(message):
     if isRecieveCommand:
         #マップデータを取得
         mapdata = getLocation.getLocations()
+        color = RandomColor.getColor()
+
+        if(mapdata == "error"):
+            data = getLocation.getError()
+            embed = discord.Embed( # Embedを定義する
+                          title="エラー",# タイトル
+                          color=color, # フレーム色指定(今回は緑)
+                          description=data, # Embedの説明文 必要に応じて
+                          )
+            await message.channel.send(embed=embed)
+            return
+        
         #ランダムに選択
         NamedLocation = getLocation.FindNamedLocation(mapdata.data,isAllLocation)
         location = random.choice(NamedLocation)
@@ -83,7 +98,6 @@ async def on_message(message):
         fn = "tmp/" + fileName
         img.save(fn,format='png')
 
-        color = RandomColor.getColor()
         #embed作成
         embed = discord.Embed( # Embedを定義する
                           title=name + "さんパーティーの降下場所こちら！",# タイトル

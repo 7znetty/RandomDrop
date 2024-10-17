@@ -12,7 +12,11 @@ def getLocations():
         mapData = MapDataClass.MapData(content["data"]["images"]["blank"],content["data"]["images"]["pois"])
         for data in content["data"]["pois"]:
             id = data["id"]
-            name = data["name"]
+            if "name" in data:
+                name = data["name"]
+            else:
+                name = id
+
             x = data["location"]["x"]
             y = data["location"]["y"]
             z = data["location"]["z"]

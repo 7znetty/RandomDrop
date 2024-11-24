@@ -94,8 +94,9 @@ async def on_message(message):
         img = getImage.GetImage(mapdata.PoisImage,x,y)
         
         #tmpファイルを保存
+        dirname = os.path.dirname(__file__)        
         fileName = str(uuid.uuid1()) + ".png"
-        fn = "tmp/" + fileName
+        fn = dirname + "/tmp/" + fileName
         img.save(fn,format='png')
 
         #embed作成

@@ -28,13 +28,26 @@ def GetImage(url,x,y):
 # #C2Remix時に調整(2024.11月)
 #     y = -84175
 #     x = 113173
-    _x = y / 65 #- img_pin.width
-    _y = -x / 65 #- img_pin.height
+    # _x = y / 65 #- img_pin.width
+    # _y = -x / 65 #- img_pin.height
+
+#C6S1
+# "name": "ウィッフィー・ウォーフ",
+                # "location": {
+                #     "x": -88950,
+                #     "y": -84496,
+                #     "z": 4432
+#わる数字を増やすと中央に近づく
+    _x = x / 130 #- img_pin.width
+    _y = y / 140 #- img_pin.height
 
     center_x = img_map.height / 2
     center_y = img_map.width / 2
 
     pin_center_x = img_pin.width / 3
+
+    #ｃ6S1に変更
+    pin_center_x = img_pin.width
     pin_center_y = img_pin.height
 
     #ブレンド

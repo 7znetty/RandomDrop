@@ -109,7 +109,7 @@ async def on_message(message):
         # ローカル画像からFileオブジェクトを作成
         file = discord.File(fp=fn,filename=fileName,spoiler=False)
         embed.set_image(url=f"attachment://{fileName}")
-        embed.set_footer(text="made by ShinoMegu")
+        embed.set_footer(text="Last Update:2024.12.2 / Made by ShinoMegu")
         
         #msg = location.name + " x:" + str(location.location.x), " y:" + str(location.location.y) + " z:" + str(location.location.z)
         #await message.channel.send(msg,file=discord.File(fn))
